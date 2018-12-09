@@ -1,21 +1,5 @@
 package main
 
-import (
-	"fmt"
-)
-
-func main() {
-	str := "12345adc"
-	fmt.Println(len(str))
-	fmt.Println(reverse02(str))
-	fmt.Println(reverseByByte(str))
-
-	strWithChineseCode := "hello 世界"
-	fmt.Println(len(strWithChineseCode))
-	fmt.Println(reverse02(strWithChineseCode))
-	fmt.Println(reverseByByte(strWithChineseCode))
-}
-
 // 遍历字符串
 // golang 中没有build-in的例如js中的 reverse()的方法对数组进行反转，所以得手写一个反转数组的方法
 // 为什么这里使用了 rune ,而不是 byte ?

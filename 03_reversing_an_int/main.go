@@ -1,19 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"strconv"
 )
-
-func main() {
-	fmt.Println(P(10032))
-	fmt.Println(P(-11003223001))
-	fmt.Println(P(-90))
-
-	fmt.Println(P2(10032))
-	fmt.Println(P2(-11003223001))
-	fmt.Println(P2(-90))
-}
 
 // 转化为字符串后，通过字符串的回文判断方法
 func P(num int) int {

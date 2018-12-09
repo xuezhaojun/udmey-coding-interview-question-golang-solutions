@@ -6,8 +6,3 @@ package main
 func anagram(str1, str2 string) (result bool) {
 
 }
-
-// todo 你来填写的
-func anagram_0(str1, str2 string) (result bool) {
-	return
-}

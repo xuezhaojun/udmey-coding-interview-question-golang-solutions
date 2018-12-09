@@ -1,5 +1,10 @@
 package main
 
+import (
+	"sort"
+	"strings"
+)
+
 // anagram 是指，两个字符串中，如果字符的数量相同，则是 anagram 如果不同，则不是
 // 对应leetCode 242
 
@@ -28,4 +33,15 @@ func anagram(s, t string) (result bool) {
 	}
 
 	return true
+}
+
+// anagram 等同于 排序后完全一样
+func anagram2(s, t string) bool {
+	return stringSort(s) == stringSort(t)
+}
+
+func stringSort(s string) string {
+	ss := strings.Split(s, "")
+	sort.Strings(ss)
+	return strings.Join(ss, "")
 }

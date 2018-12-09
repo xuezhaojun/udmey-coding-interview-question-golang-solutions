@@ -22,4 +22,6 @@ func Test(t *testing.T) {
 	}
 
 	getResult(anagram)
+
+	getResult(anagram2)
 }

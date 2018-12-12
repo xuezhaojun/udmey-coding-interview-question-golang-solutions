@@ -21,4 +21,6 @@ func Test(t *testing.T) {
 	}
 
 	getResult(vowels)
+
+	getResult(vowelsReg)
 }

@@ -1,6 +1,10 @@
 package _1_vowels
 
-import "strings"
+import (
+	"fmt"
+	"regexp"
+	"strings"
+)
 
 // 获取一句话中所有的元音字母的数量
 // 最简单的方式就是遍历字符串中的所有字节，对每一个进行判断是否在a,e,i,o,u之中
@@ -20,4 +24,14 @@ func vowels(str string) (num int) {
 		}
 	}
 	return
+}
+
+// reg 正则表达式
+func vowelsReg(str string) (num int) {
+	r, err := regexp.Compile(`[aeiou]`)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	return len(r.FindAllString(strings.ToLower(str), -1))
 }

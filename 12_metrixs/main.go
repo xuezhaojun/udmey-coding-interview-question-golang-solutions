@@ -1,6 +1,6 @@
-package matrix
+package _2_metrixs
 
-// matrix 输入一个整数n, 输出一个n*n的矩阵
+// 12_metrixs 输入一个整数n, 输出一个n*n的矩阵
 
 func matrix(num int) (metrixs [][]int) {
 	for i := 0; i < num; i++ {

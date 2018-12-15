@@ -35,7 +35,8 @@ func (s *stack) Pop() (i int, err error) {
 }
 
 // queue from stack 是一个通过 stack 模拟 queue 中FIFO表现的队列
-// 两个stack , 一个负责存， 一个负责取
+// 两个stack , 一个负责存， 一个负责取(关键)
+// 通过画图，能更好的理解这些抽象的东西，具象化这些东西，直到养成脑内画图的习惯
 type queueFromStack struct {
 	fs *stack // 负责存的
 	ss *stack // 负责取的

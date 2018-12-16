@@ -37,7 +37,7 @@ func NewTree() *Tree {
 }
 
 // Breadth First 根据出生的时间
-// 等级，就是典型的树结构
+// 如果你要返回每一层的节点数，则需要使用BFS
 // BF 要用到 queue FIFO
 func (t *Tree) BFS(data int) bool {
 	l := list.New()

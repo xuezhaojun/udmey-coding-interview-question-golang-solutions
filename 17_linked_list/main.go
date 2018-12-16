@@ -1,4 +1,4 @@
-package _7_linked_list
+package linked_list
 
 import (
 	"fmt"

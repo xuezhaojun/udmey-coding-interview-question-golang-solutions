@@ -8,6 +8,9 @@ package _2_bst
 // 一个二分查找树，主要的方法就是两个:
 // Add 用于构建树
 // Search 用于查找某一个元素是否存在
+
+// 面试中：最最常见的一个关于二分查找的问题，如何验证一个二分树，是否满足二分查找树
+
 type BSTNode struct {
 	Data  int
 	Left  *BSTNode
@@ -67,4 +70,65 @@ func (tree *BSTTree) Search(data int) bool {
 		return false
 	}
 	return tree.Root.search(data)
+}
+
+// 验证一个二分树是否满足BST
+// 牢记一点，并不是 左右子树都是二分树，父树就是二分树的，特例 [10,5,15,null,null,6,20]
+// 二分查找树的特性并不是 ： 左节点 < 父 < 右节点，这是bstnode的特性
+// 二分查找树的特性是 ： ** 左树的最大 < 父 < 右树的最小 且 左树，右树，也是二分查找树 **
+// 所以问题就转化为了，求一颗树的最大和最小
+// 对应 leetCode 98 题,数据结构就采用 leetCode上的数据结构了
+
+// todo 优化： 目前我按照 大于左边最大，小于右边最小来计算，会导致会对 min, max 进行多次的重复计算，好处是思路，代码清晰
+// 优化思路是，** 左子树要小于的值 = 父节点要大于的值， 右子树要大于的值 = 父节点要小于的值 ** 重要
+// 即 isV(node *TreeNode, min int, minExit bool, max int, maxExit bool)
+// 然后 对于左右就要在多判断集中情况
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
+
+func isValidBST(node *TreeNode) bool {
+	if node == nil {
+		return true
+	}
+	// 左
+	var leftStatus bool
+	switch {
+	case node.Left != nil && node.Val <= min(node.Left):
+		leftStatus = false
+	case node.Left != nil && node.Val > min(node.Left):
+		leftStatus = isValidBST(node.Left)
+	default:
+		leftStatus = true
+	}
+	// 右
+	var rightStatus bool
+	switch {
+	case node.Right != nil && node.Val >= max(node.Right):
+		rightStatus = false
+	case node.Right != nil && node.Val < max(node.Right):
+		rightStatus = isValidBST(node.Right)
+	default:
+		rightStatus = true
+	}
+	// 必须同时为真
+	return leftStatus && rightStatus
+}
+
+// 最小
+func min(node *TreeNode) int {
+	for node.Right != nil {
+		node = node.Right
+	}
+	return node.Val
+}
+
+// 最大
+func max(node *TreeNode) int {
+	for node.Left != nil {
+		node = node.Left
+	}
+	return node.Val
 }

@@ -132,3 +132,29 @@ func max(node *TreeNode) int {
 	}
 	return node.Val
 }
+
+// 之前的思维，太过于宏观，不够微观，不够一步一步来
+// 判断第一个节点的时候，不用去想，是否满足 大于左边整个子树的最大值，也不考虑右边，只是考虑自己
+// 把烦人的判断交给后面的节点
+// 比如它的左节点（以及左节点所有的子节点），就要满足不能超过上限，就是当前节点的值，而它的右边节点（以及所有的子节点），要满足一个下限，就是不能低于当前节点的值
+// 此时来描述一个二分查找树：
+// 《重要》
+// 我大于（右子节点），则我的所有孩子，不论左右，都会大于
+// 我小于（左子节点），则我的所有孩子，不论左右，都会小于
+// 《重要》
+func validBST(node *TreeNode, min *int, max *int) bool {
+	switch {
+	case node == nil:
+		return true
+	case min != nil && node.Val <= *min:
+		return false
+	case max != nil && node.Val >= *max:
+		return false
+	case node.Left != nil && !validBST(node.Left, min, &node.Val):
+		return false
+	case node.Right != nil && !validBST(node.Right, &node.Val, max):
+		return false
+	default:
+		return true
+	}
+}

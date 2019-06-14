@@ -63,11 +63,8 @@ func (t *Tree) DFS(data int) bool {
 
 func search(node *Node, data int) bool {
 	// 叶子
-	if len(node.Children) == 0 {
-		if node.Data == data {
-			return true
-		}
-		return false
+	if node.Data == data {
+		return true
 	}
 	// 非叶子
 	var result bool

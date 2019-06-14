@@ -19,8 +19,8 @@ func TestTree_BFS(t *testing.T) {
 	if tree.BFS(9) == true {
 		t.Error("no 9")
 	}
-	if tree.BFS(6) == false {
-		t.Error("has 6")
+	if tree.BFS(2) == false {
+		t.Error("has 2")
 	}
 }
 
@@ -41,7 +41,7 @@ func TestTree_DFS(t *testing.T) {
 	if tree.DFS(9) == true {
 		t.Error("no 9")
 	}
-	if tree.DFS(6) == false {
-		t.Error("has 6")
+	if tree.DFS(2) == false {
+		t.Error("has 2")
 	}
 }
